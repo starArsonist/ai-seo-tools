@@ -1,0 +1,21 @@
+{
+  "name": "ai-seo-tools",
+  "owner": {
+    "name": "starArsonist",
+    "url": "https://github.com/starArsonist"
+  },
+  "metadata": {
+    "description": "SEO-данные Google и Яндекса для Claude Code.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "seo-tools",
+      "source": "./",
+      "description": "MCP-сервер с данными Search Console, Вебмастера и Вордстата, SEO-агент и сценарии: срез сайта, аудит каннибализации, сбор семантики.",
+      "version": "0.1.0",
+      "category": "marketing",
+      "keywords": ["seo", "search-console", "yandex", "wordstat", "mcp"]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+# Ключи. В репозитории их быть не должно: сервер читает их из ~/.seo-tools
+.env
+.env.*
+!.env.example
+*service-account*.json
+claude-integration-*.json
+client_secret*.json
+
+# Выгрузки
+reports/
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+build/
+dist/
+
+# Редакторы и ОС
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Локальные настройки Claude Code
+.claude/settings.local.json

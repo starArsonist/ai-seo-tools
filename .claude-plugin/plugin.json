@@ -1,0 +1,72 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "seo-tools",
+  "version": "0.1.0",
+  "description": "Живые данные Google Search Console, Яндекс.Вебмастера и Вордстата в Claude Code: MCP-сервер на 14 инструментов, SEO-агент и готовые сценарии (срез, каннибализация, семантика).",
+  "author": {
+    "name": "starArsonist",
+    "url": "https://github.com/starArsonist"
+  },
+  "homepage": "https://github.com/starArsonist/ai-seo-tools",
+  "repository": "https://github.com/starArsonist/ai-seo-tools",
+  "license": "MIT",
+  "keywords": ["seo", "search-console", "yandex", "wordstat", "webmaster", "mcp"],
+  "network": {
+    "hosts": [
+      "searchconsole.googleapis.com",
+      "oauth2.googleapis.com",
+      "api.webmaster.yandex.net",
+      "searchapi.api.cloud.yandex.net",
+      "oauth.yandex.ru",
+      "pypi.org",
+      "files.pythonhosted.org"
+    ]
+  },
+  "mcpServers": {
+    "seo": {
+      "command": "uv",
+      "args": ["run", "--quiet", "--project", "${CLAUDE_PLUGIN_ROOT}", "seo-tools-mcp"],
+      "env": {
+        "YANDEX_OAUTH_TOKEN": "${user_config.yandex_oauth_token}",
+        "YANDEX_CLOUD_API_KEY": "${user_config.yandex_cloud_api_key}",
+        "YANDEX_CLOUD_FOLDER_ID": "${user_config.yandex_cloud_folder_id}",
+        "GOOGLE_SERVICE_ACCOUNT_FILE": "${user_config.google_service_account_file}",
+        "SEO_TOOLS_HOME": "${user_config.seo_tools_home}"
+      }
+    }
+  },
+  "userConfig": {
+    "yandex_oauth_token": {
+      "type": "string",
+      "title": "Яндекс OAuth-токен",
+      "description": "Токен с доступом к Вебмастеру. Пусто: берётся из ~/.seo-tools/.env (туда его пишет seo-tools yandex-token).",
+      "sensitive": true,
+      "default": ""
+    },
+    "yandex_cloud_api_key": {
+      "type": "string",
+      "title": "API-ключ Yandex Cloud",
+      "description": "Ключ сервисного аккаунта с ролью search-api.webSearch.user, нужен для Вордстата. Пусто: из .env.",
+      "sensitive": true,
+      "default": ""
+    },
+    "yandex_cloud_folder_id": {
+      "type": "string",
+      "title": "Каталог Yandex Cloud",
+      "description": "id каталога (b1g...), в котором создан ключ. Пусто: из .env.",
+      "default": ""
+    },
+    "google_service_account_file": {
+      "type": "string",
+      "title": "JSON сервисного аккаунта Google",
+      "description": "Полный путь к ключу. Пусто: первый JSON сервисного аккаунта в ~/.seo-tools.",
+      "default": ""
+    },
+    "seo_tools_home": {
+      "type": "string",
+      "title": "Папка seo-tools",
+      "description": "Где лежат .env, ключ Google и отчёты. Пусто: ~/.seo-tools.",
+      "default": ""
+    }
+  }
+}
